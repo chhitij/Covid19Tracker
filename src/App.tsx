@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Container from '@material-ui/core/Container';
+import Layout from './components/Layout/Layout';
+// import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import C19Tracker from './containers/C19Tracker/C19Tracker';
+import classes from './App.module.css';
+import { Paper, ThemeProvider, createMuiTheme, Theme } from '@material-ui/core';
+import useDarkMode from './theme';
 
-function App() {
+declare type darkMode = {
+  palette: any;
+};
+
+const App = () => {
+  const [theme, toggleDarkMode] = useDarkMode();
+  const themeConfig = createMuiTheme(theme as Theme);
+  const setThemeMode = () => {
+    toggleDarkMode();
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={themeConfig}>
+      <Paper className={classes.AppHeight}>
+        <Container className={classes.App}>
+          <Layout changeTheme={setThemeMode}>
+            <Typography align="center" variant="h5">
+              <C19Tracker />
+            </Typography>
+          </Layout>
+        </Container>
+      </Paper>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
