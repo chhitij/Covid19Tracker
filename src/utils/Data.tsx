@@ -1,8 +1,6 @@
 import axios from 'axios';
-
-var covidSum: any = [],
+let covidSum: any = [],
   countries: any = [];
-
 export const createList = async () => {
   let {
       data: { response: covidSumData },
@@ -26,11 +24,8 @@ export const createList = async () => {
   covidSum = covidSumData;
   countries = countriesData;
 
-  //Pulled USA and UK especially, because country and covid API's has different name for them
   let usaData = matchCountry('United States', 'USA'),
     ukData = matchCountry('United Kingdom', 'UK');
-
-  ////////////
 
   let responseData: any = [];
 
@@ -67,13 +62,8 @@ export const createList = async () => {
     (worldData.deaths.total * 100) / worldData.cases.total;
   worldData.PercentRecovered =
     (worldData.cases.recovered * 100) / worldData.cases.total;
-
-  ////////////
-
   responseData.push(usaData, ukData, worldData);
-  // return responseData;
   return [
-    // Schwartzian transform
     responseData
       .map((item: any, index) => [
         +item['cases'].total,
