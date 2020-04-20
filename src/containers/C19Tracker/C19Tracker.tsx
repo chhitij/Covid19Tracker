@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    minHeight: 150,
+    minHeight: 161,
   },
   alignCenter: {
     display: 'flex',
@@ -56,7 +56,6 @@ const C19Tracker = () => {
   const fetchData = async () => {
     setLoading(true);
     const statusList = await createList();
-    console.log('statusList', statusList);
     // setOriginalList(statusList);
     setDataList(statusList[0]);
     setLoading(false);

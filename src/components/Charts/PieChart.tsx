@@ -40,7 +40,6 @@ const SimplePieChart = (props) => {
     { name: 'Critical', value: chartData.cases.critical },
     { name: 'Recoverd', value: chartData.cases.recovered },
   ];
-  console.log('data', data);
   return (
     <PieChart width={250} height={120}>
       <Pie

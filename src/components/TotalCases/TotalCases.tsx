@@ -41,6 +41,9 @@ const useStyles = makeStyles((theme: Theme) =>
     critical: {
       background: theme.palette.error.main,
     },
+    totalCasePercFont: {
+      fontSize: '14px',
+    },
   })
 );
 const TotalCases = (props: any) => {
@@ -58,31 +61,45 @@ const TotalCases = (props: any) => {
           Total Coronavirus Cases :
         </Grid>
         <Grid item xs={12} md={3} lg={3} className={showTotalCase}>
-          {totalData.cases.total}
+          <Grid>{totalData.cases.total}</Grid>
+          <Grid className={classes.totalCasePercFont}>
+            (%{totalData.PercentConfirmed.toFixed(5)})
+          </Grid>
         </Grid>
         <Divider className={classes.divider} />
         <Grid item xs={12} md={3} lg={3}>
           <Paper className={activeCases}>
             <Grid>Active</Grid>
-            <Grid>{totalData.cases.active}</Grid>
+            <Grid>
+              {totalData.cases.active}
+              (%{totalData.PercentActive.toFixed(2)})
+            </Grid>
           </Paper>
         </Grid>
         <Grid item xs={12} md={3} lg={3}>
           <Paper className={danger}>
             <Grid>Deaths</Grid>
-            <Grid>{totalData.deaths.total}</Grid>
+            <Grid>
+              {totalData.deaths.total}(%{totalData.PercentDeath.toFixed(2)})
+            </Grid>
           </Paper>
         </Grid>
         <Grid item xs={12} md={3} lg={3}>
           <Paper className={recovered}>
             <Grid>Recoverd</Grid>
-            <Grid>{totalData.cases.recovered}</Grid>
+            <Grid>
+              {totalData.cases.recovered}
+              (%{totalData.PercentRecovered.toFixed(2)})
+            </Grid>
           </Paper>
         </Grid>
         <Grid item xs={12} md={3} lg={3}>
           <Paper className={critical}>
             <Grid>Critical</Grid>
-            <Grid>{totalData.cases.critical}</Grid>
+            <Grid>
+              {totalData.cases.critical}
+              (%{totalData.PercentCritical.toFixed(2)})
+            </Grid>
           </Paper>
         </Grid>
       </Grid>

@@ -44,6 +44,8 @@ export const createList = async () => {
         };
         dataObj.PercentConfirmed =
           (dataObj.cases.total * 100) / currentCon.population;
+        dataObj.PercentActive =
+          (dataObj.cases.active * 100) / dataObj.cases.active;
         dataObj.PercentDeath =
           (dataObj.deaths.total * 100) / dataObj.cases.total;
         dataObj.PercentRecovered =
@@ -58,10 +60,14 @@ export const createList = async () => {
 
   worldData.country = 'World';
   worldData.PercentConfirmed = (worldData.cases.total * 100) / 6730998923;
+  worldData.PercentActive =
+    (worldData.cases.active * 100) / worldData.cases.total;
   worldData.PercentDeath =
     (worldData.deaths.total * 100) / worldData.cases.total;
   worldData.PercentRecovered =
     (worldData.cases.recovered * 100) / worldData.cases.total;
+  worldData.PercentCritical =
+    (worldData.cases.critical * 100) / worldData.cases.total;
   responseData.push(usaData, ukData, worldData);
   return [
     responseData
