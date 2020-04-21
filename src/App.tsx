@@ -23,9 +23,7 @@ const App = () => {
       <Paper className={classes.AppHeight}>
         <Container className={classes.App}>
           <Layout changeTheme={setThemeMode}>
-            <Typography align="center" variant="h5">
-              <C19Tracker />
-            </Typography>
+            <C19Tracker />
           </Layout>
         </Container>
       </Paper>

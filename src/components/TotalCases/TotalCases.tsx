@@ -70,36 +70,25 @@ const TotalCases = (props: any) => {
         <Grid item xs={12} md={3} lg={3}>
           <Paper className={activeCases}>
             <Grid>Active</Grid>
-            <Grid>
-              {totalData.cases.active}
-              (%{totalData.PercentActive.toFixed(2)})
-            </Grid>
+            <Grid>{totalData.cases.active}</Grid>
           </Paper>
         </Grid>
         <Grid item xs={12} md={3} lg={3}>
           <Paper className={danger}>
             <Grid>Deaths</Grid>
-            <Grid>
-              {totalData.deaths.total}(%{totalData.PercentDeath.toFixed(2)})
-            </Grid>
+            <Grid>{totalData.deaths.total}</Grid>
           </Paper>
         </Grid>
         <Grid item xs={12} md={3} lg={3}>
           <Paper className={recovered}>
             <Grid>Recoverd</Grid>
-            <Grid>
-              {totalData.cases.recovered}
-              (%{totalData.PercentRecovered.toFixed(2)})
-            </Grid>
+            <Grid>{totalData.cases.recovered}</Grid>
           </Paper>
         </Grid>
         <Grid item xs={12} md={3} lg={3}>
           <Paper className={critical}>
             <Grid>Critical</Grid>
-            <Grid>
-              {totalData.cases.critical}
-              (%{totalData.PercentCritical.toFixed(2)})
-            </Grid>
+            <Grid>{totalData.cases.critical}</Grid>
           </Paper>
         </Grid>
       </Grid>

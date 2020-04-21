@@ -8,11 +8,15 @@ import {
   makeStyles,
   Theme,
   CircularProgress,
+  TextField,
+  IconButton,
+  InputBase,
 } from '@material-ui/core';
 import SimplePieChart from '../../components/Charts/PieChart';
 import { createList } from '../../utils/Data';
 import DataList from '../../components/DataList/DataList';
 import TotalCases from '../../components/TotalCases/TotalCases';
+import SearchIcon from '@material-ui/icons/Search';
 // import classes from './C19Tracker.module.css';
 // creating class based comonent
 
@@ -37,13 +41,21 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    minHeight: 161,
+    minHeight: 153,
   },
   alignCenter: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
+  },
+  input: {
+    flex: 1,
+    width: '80%',
+  },
+  searchBar: {
+    margin: '0px 0 11px',
+    padding: '4px',
   },
 }));
 
@@ -55,8 +67,8 @@ const C19Tracker = () => {
     [originalList, setOriginalList] = useState([]);
   const fetchData = async () => {
     setLoading(true);
-    const statusList = await createList();
-    // setOriginalList(statusList);
+    const statusList: any = await createList();
+    setOriginalList(statusList);
     setDataList(statusList[0]);
     setLoading(false);
   };
@@ -64,17 +76,24 @@ const C19Tracker = () => {
     fetchData();
   }, []);
 
+  const searchByName = (event) => {
+    const text = event.target.value;
+    const mainList: any = originalList[0];
+    let filteredList = mainList.filter((item: any) => {
+      const itemData = item.country.toUpperCase();
+      const textData = text.toUpperCase();
+      return itemData.indexOf(textData) > -1;
+    });
+    setDataList(filteredList);
+  };
+
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-  return (
-    <Aux>
-      <div className={classes.appBarSpacer} />
-      {loading ? (
-        <Grid className={classes.alignCenter}>
-          <CircularProgress disableShrink />
-        </Grid>
-      ) : (
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={2}>
+
+  const IsdataList = () => {
+    return (
+      <Aux>
+        {dataList.length > 0 ? (
+          <Aux>
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
                 <TotalCases totalData={dataList[0]} />
@@ -85,7 +104,33 @@ const C19Tracker = () => {
                 <SimplePieChart chartData={dataList[0]} />
               </Paper>
             </Grid>
+          </Aux>
+        ) : (
+          ''
+        )}
+      </Aux>
+    );
+  };
+  return (
+    <Aux>
+      <div className={classes.appBarSpacer} />
+      {loading ? (
+        <Grid className={classes.alignCenter}>
+          <CircularProgress disableShrink />
+        </Grid>
+      ) : (
+        <Container maxWidth="lg" className={classes.container}>
+          <Grid container spacing={2}>
+            <IsdataList />
             <Grid item xs={12}>
+              <Grid item className={classes.searchBar}>
+                <TextField
+                  label="Serch"
+                  onInput={searchByName}
+                  className={classes.input}
+                  inputProps={{ 'aria-label': 'Serch' }}
+                />
+              </Grid>
               <DataList dataList={dataList} />
             </Grid>
           </Grid>

@@ -1,13 +1,11 @@
 import React from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import clsx from 'clsx';
+import { Grid, Divider } from '@material-ui/core';
+import Aux from '../hoc/auxillary';
+import NotFoundImg from '../../assests/images/not_found.png';
+
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flexGrow: 1,
@@ -17,18 +15,33 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     padding: theme.spacing(1),
   },
-  tableHeader: {
+  countryRow: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: '4px 10px',
+    alignItems: 'center',
+    fontSize: '16px',
+  },
+  casesRow: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: '4px 10px',
+    alignItems: 'center',
+  },
+  listHeader: {
     position: 'sticky',
     top: 0,
   },
   table: {
     minWidth: 650,
   },
-  tableContainer: {
-    maxHeight: 450,
+  listContainer: {
+    maxHeight: 'calc(100vh - 200px)',
+    overflow: 'auto',
   },
   headerBold: {
     fontWeight: 'bold',
+    fontSize: '13px',
   },
   recovred: {
     color: '#00e676',
@@ -43,6 +56,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   critical: {
     color: theme.palette.error.main,
   },
+  notFound: {
+    maxHeight: '100vh',
+    display: 'flex',
+    justifyContent: 'center',
+  },
 }));
 
 export const DataList = (props: any) => {
@@ -52,57 +70,41 @@ export const DataList = (props: any) => {
   const danger = clsx(classes.danger, classes.headerBold);
   const activeCases = clsx(classes.active, classes.headerBold);
   const critical = clsx(classes.critical, classes.headerBold);
-  const RowTable = () => {
+  const RowList = () => {
     return dataList.map((item, index) => {
       return (
-        <TableRow key={item.country}>
-          <TableCell component="th" scope="row">
-            {item.country}
-          </TableCell>
-          <TableCell align="left">{item.cases.total}</TableCell>
-          <TableCell align="left">{item.cases.active}</TableCell>
-          <TableCell align="left">{item.deaths.total}</TableCell>
-          <TableCell align="left">{item.cases.recovered}</TableCell>
-          <TableCell align="left">{item.cases.critical}</TableCell>
-        </TableRow>
+        <Aux key={item.country}>
+          <Grid item xs={12} lg={12} md={9}>
+            <Grid className={classes.countryRow}>
+              <Grid>{item.country}</Grid>
+              <Grid>Total: {item.cases.total}</Grid>
+            </Grid>
+            <Grid className={classes.casesRow}>
+              <Grid className={activeCases}>Active: {item.cases.active}</Grid>
+              <Grid className={danger}>Deaths: {item.deaths.total}</Grid>
+              <Grid className={recovered}>
+                Recoverd: {item.cases.recovered}
+              </Grid>
+              <Grid className={critical}>Critical: {item.cases.critical}</Grid>
+            </Grid>
+          </Grid>
+          <Divider />
+        </Aux>
       );
     });
   };
   return (
-    <Paper>
-      <TableContainer className={classes.tableContainer}>
-        <Table
-          className={classes.table}
-          size="small"
-          aria-label="a dense table"
-          stickyHeader={true}
-        >
-          <TableHead>
-            <TableRow>
-              <TableCell className={classes.headerBold}>Country</TableCell>
-              <TableCell className={classes.headerBold} align="left">
-                Total
-              </TableCell>
-              <TableCell className={activeCases} align="left">
-                Active
-              </TableCell>
-              <TableCell className={danger} align="left">
-                Deaths
-              </TableCell>
-              <TableCell className={recovered} align="left">
-                Recovered
-              </TableCell>
-              <TableCell className={critical} align="left">
-                Critical
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <RowTable />
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Paper>
+    <Aux>
+      <Paper className={classes.listContainer}>
+        {dataList.length > 0 ? (
+          <RowList />
+        ) : (
+          <Grid className={classes.notFound}>
+            <img width={400} src={NotFoundImg}></img>
+          </Grid>
+        )}
+      </Paper>
+    </Aux>
   );
 };
 

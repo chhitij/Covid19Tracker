@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
   },
   toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
+    paddingRight: 24,
   },
   title: {
     flexGrow: 1,
@@ -28,7 +28,7 @@ const Header = (props) => {
   const { changeTheme } = props;
   const classes = useStyles();
   return (
-    <AppBar position="absolute">
+    <AppBar position="fixed">
       <Toolbar className={classes.toolbar}>
         <Typography
           component="h1"
