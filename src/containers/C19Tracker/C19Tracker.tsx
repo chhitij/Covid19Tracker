@@ -125,10 +125,10 @@ const C19Tracker = () => {
             <Grid item xs={12}>
               <Grid item className={classes.searchBar}>
                 <TextField
-                  label="Serch"
+                  label="Search"
                   onInput={searchByName}
                   className={classes.input}
-                  inputProps={{ 'aria-label': 'Serch' }}
+                  inputProps={{ 'aria-label': 'Search' }}
                 />
               </Grid>
               <DataList dataList={dataList} />
