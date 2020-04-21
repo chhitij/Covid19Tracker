@@ -2,7 +2,7 @@ import React from 'react';
 import { ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { red } from '@material-ui/core/colors';
 
-const COLORS = ['#f57c00', 'red', 'red.A400', '#00e676'];
+const COLORS = ['#f57c00', 'red', '#00e676'];
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({
@@ -37,7 +37,6 @@ const SimplePieChart = (props) => {
   let data = [
     { name: 'Active', value: chartData.cases.active },
     { name: 'Deaths', value: chartData.deaths.total },
-    { name: 'Critical', value: chartData.cases.critical },
     { name: 'Recoverd', value: chartData.cases.recovered },
   ];
   return (
