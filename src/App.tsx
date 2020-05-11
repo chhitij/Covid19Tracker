@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from '@material-ui/core/Container';
 import Layout from './components/Layout/Layout';
 // import Box from '@material-ui/core/Box';
@@ -14,16 +14,24 @@ declare type darkMode = {
 
 const App = () => {
   const [theme, toggleDarkMode] = useDarkMode();
+  const [worldMap, setWorldMap] = useState(false);
   const themeConfig = createMuiTheme(theme as Theme);
   const setThemeMode = () => {
     toggleDarkMode();
+  };
+  const setIsWorldOption = (nav: string) => {
+    if (nav === 'home') {
+      setWorldMap(false);
+    } else if (nav === 'world') {
+      setWorldMap(true);
+    }
   };
   return (
     <ThemeProvider theme={themeConfig}>
       <Paper className={classes.AppHeight}>
         <Container className={classes.App}>
-          <Layout changeTheme={setThemeMode}>
-            <C19Tracker />
+          <Layout changeTheme={setThemeMode} isWorldOption={setIsWorldOption}>
+            <C19Tracker isWorldOption={worldMap} />
           </Layout>
         </Container>
       </Paper>

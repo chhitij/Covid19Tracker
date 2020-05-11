@@ -6,7 +6,10 @@ import Footer from '../UI/Footer/Footer';
 const Layout = (props) => {
   return (
     <Aux>
-      <Header changeTheme={props.changeTheme}></Header>
+      <Header
+        changeTheme={props.changeTheme}
+        isWorldOption={props.isWorldOption}
+      ></Header>
       <main>{props.children}</main>
       <Footer />
     </Aux>

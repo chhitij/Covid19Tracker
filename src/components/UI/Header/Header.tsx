@@ -8,6 +8,7 @@ import {
   IconButton,
   Switch,
   Tooltip,
+  Grid,
 } from '@material-ui/core';
 import Brightness4OutlinedIcon from '@material-ui/icons/Brightness4Outlined';
 import Brightness7OutlinedIcon from '@material-ui/icons/Brightness7Outlined';
@@ -20,12 +21,23 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingRight: 24,
   },
   title: {
+    flexGrow: 0.1,
+    cursor: 'pointer',
+  },
+  nav: {
     flexGrow: 1,
+    padding: '10px',
+    display: 'flex',
+    alignItems: 'center',
+    fontSize: '16px',
+  },
+  navItem: {
+    cursor: 'pointer',
   },
 }));
 
 const Header = (props) => {
-  const { changeTheme } = props;
+  const { changeTheme, isWorldOption } = props;
   const classes = useStyles();
   return (
     <AppBar position="fixed">
@@ -36,9 +48,18 @@ const Header = (props) => {
           color="inherit"
           noWrap
           className={classes.title}
+          onClick={() => isWorldOption('home')}
         >
           Covid19Tracker
         </Typography>
+        <Grid className={classes.nav}>
+          <Grid
+            className={classes.navItem}
+            onClick={() => isWorldOption('world')}
+          >
+            WorldMap{' '}
+          </Grid>
+        </Grid>
         <IconButton color="inherit">
           <Tooltip title="DayMode">
             <IconButton aria-label="day-mode" color="inherit">

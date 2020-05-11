@@ -9,14 +9,17 @@ import {
   Theme,
   CircularProgress,
   TextField,
-  IconButton,
-  InputBase,
+  OutlinedInput,
+  InputLabel,
+  InputAdornment,
 } from '@material-ui/core';
 import SimplePieChart from '../../components/Charts/PieChart';
 import { createList } from '../../utils/Data';
 import DataList from '../../components/DataList/DataList';
 import TotalCases from '../../components/TotalCases/TotalCases';
 import SearchIcon from '@material-ui/icons/Search';
+import WorlMap from '../../components/WorldMap/Worldmap';
+import PublicIcon from '@material-ui/icons/Public';
 // import classes from './C19Tracker.module.css';
 // creating class based comonent
 
@@ -55,13 +58,15 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   searchBar: {
     margin: '0px 0 11px',
-    padding: '4px',
+  },
+  outLineSpace: {
+    height: '40px',
   },
 }));
 
-const C19Tracker = () => {
+const C19Tracker = (props: any) => {
+  const { isWorldOption } = props;
   const classes = useStyles();
-
   const [loading, setLoading] = useState(true),
     [dataList, setDataList] = useState([]),
     [originalList, setOriginalList] = useState([]);
@@ -120,20 +125,32 @@ const C19Tracker = () => {
         </Grid>
       ) : (
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={2}>
-            <IsdataList />
-            <Grid item xs={12}>
-              <Grid item className={classes.searchBar}>
-                <TextField
-                  label="Search"
-                  onInput={searchByName}
-                  className={classes.input}
-                  inputProps={{ 'aria-label': 'Search' }}
-                />
+          {isWorldOption ? (
+            <WorlMap worldData={dataList} />
+          ) : (
+            <Grid container spacing={2}>
+              <IsdataList />
+              <Grid item xs={12}>
+                <Grid item className={classes.searchBar}>
+                  <InputLabel htmlFor="outlined-adornment-amount">
+                    Search
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-amount"
+                    onInput={searchByName}
+                    className={classes.outLineSpace}
+                    inputProps={{ 'aria-label': 'Search' }}
+                    startAdornment={
+                      <InputAdornment position="start">
+                        <PublicIcon />
+                      </InputAdornment>
+                    }
+                  />
+                </Grid>
+                <DataList dataList={dataList} />
               </Grid>
-              <DataList dataList={dataList} />
             </Grid>
-          </Grid>
+          )}
         </Container>
       )}
     </Aux>
