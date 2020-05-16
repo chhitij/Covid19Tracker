@@ -1,0 +1,41 @@
+.ListSize {
+  background: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 13px;
+}
+
+.itemlist {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  width: 100%;
+}
+.countryStyle {
+  font-weight: bolder;
+  color: #2364aa;
+  opacity: 0.7;
+  font-size: 16px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.totalCase {
+  color: #ff0739;
+}
+
+.activeCase {
+  color: #2364aa;
+}
+
+.recoveredCase {
+  color: #28a745;
+}
+
+.decasedCase {
+  color: #6c757d;
+  font-weight: bold;
+}
