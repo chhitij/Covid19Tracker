@@ -44,13 +44,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: '13px',
   },
   recovred: {
-    color: '#00e676',
+    color: '#28a745',
   },
   danger: {
-    color: theme.palette.primary.main,
+    color: theme.palette.error.main,
   },
   active: {
-    color: '#f57c00',
+    color: theme.palette.primary.main,
   },
 
   critical: {

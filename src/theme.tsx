@@ -4,7 +4,7 @@ import { red, lightBlue } from '@material-ui/core/colors';
 const themeConfigObj = {
   palette: {
     primary: {
-      main: red['700'],
+      main: '#2364aa',
     },
     secondary: {
       main: '#00e676',

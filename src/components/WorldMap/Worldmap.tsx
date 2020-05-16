@@ -17,7 +17,7 @@ const WorldMap = (props) => {
           city: mark.country,
           color: 'yellow',
           coordinates: [mark.coordinates.latitude, mark.coordinates.longitude],
-          value: 50,
+          value: 20,
           totalCases: mark.cases.total,
         };
       } else {
@@ -26,7 +26,7 @@ const WorldMap = (props) => {
           city: mark.country,
           color: 'red',
           coordinates: [0, 0],
-          value: 50,
+          value: 20,
           totalCases: mark.cases.total,
         };
       }

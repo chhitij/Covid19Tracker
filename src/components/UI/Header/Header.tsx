@@ -13,6 +13,8 @@ import {
 import Brightness4OutlinedIcon from '@material-ui/icons/Brightness4Outlined';
 import Brightness7OutlinedIcon from '@material-ui/icons/Brightness7Outlined';
 
+import './Header.css';
+
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     display: 'flex',

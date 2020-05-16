@@ -12,6 +12,7 @@ import {
   OutlinedInput,
   InputLabel,
   InputAdornment,
+  Divider,
 } from '@material-ui/core';
 import SimplePieChart from '../../components/Charts/PieChart';
 import { createList } from '../../utils/Data';
@@ -34,8 +35,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   appBarSpacer: theme.mixins.toolbar,
   container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
   paper: {
     padding: theme.spacing(2),
@@ -61,6 +62,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   outLineSpace: {
     height: '40px',
+    boxShadow: '0 10px 35px rgba(0,0,0,.1)',
+    color: '#6c757d',
+  },
+  dataTableContainer: {
+    padding: theme.spacing(2),
   },
 }));
 
@@ -99,15 +105,8 @@ const C19Tracker = (props: any) => {
       <Aux>
         {dataList.length > 0 ? (
           <Aux>
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <TotalCases totalData={dataList[0]} />
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <SimplePieChart chartData={dataList[0]} />
-              </Paper>
+            <Grid item xs={12} md={12} lg={12} style={{ position: 'relative' }}>
+              <TotalCases totalData={dataList[0]} />
             </Grid>
           </Aux>
         ) : (
@@ -130,24 +129,38 @@ const C19Tracker = (props: any) => {
           ) : (
             <Grid container spacing={2}>
               <IsdataList />
+              <Divider />
               <Grid item xs={12}>
-                <Grid item className={classes.searchBar}>
-                  <InputLabel htmlFor="outlined-adornment-amount">
-                    Search
-                  </InputLabel>
-                  <OutlinedInput
-                    id="outlined-adornment-amount"
-                    onInput={searchByName}
-                    className={classes.outLineSpace}
-                    inputProps={{ 'aria-label': 'Search' }}
-                    startAdornment={
-                      <InputAdornment position="start">
-                        <PublicIcon />
-                      </InputAdornment>
-                    }
-                  />
+                <Grid container className={classes.searchBar} justify="center">
+                  <Grid item>
+                    <InputLabel htmlFor="outlined-adornment-amount">
+                      Search
+                    </InputLabel>
+                    <OutlinedInput
+                      id="outlined-adornment-amount"
+                      onInput={searchByName}
+                      className={classes.outLineSpace}
+                      inputProps={{ 'aria-label': 'Search' }}
+                      startAdornment={
+                        <InputAdornment position="start">
+                          <PublicIcon />
+                        </InputAdornment>
+                      }
+                    />
+                  </Grid>
                 </Grid>
-                <DataList dataList={dataList} />
+                <Grid
+                  container
+                  spacing={1}
+                  className={classes.dataTableContainer}
+                >
+                  <Grid xs={12} md={12} lg={12}>
+                    <DataList dataList={dataList} />
+                  </Grid>
+                  <Grid item xs={12} md={3} lg={3}>
+                    {/* <SimplePieChart chartData={dataList[0]} /> */}
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           )}

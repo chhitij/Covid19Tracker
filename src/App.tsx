@@ -5,9 +5,15 @@ import Layout from './components/Layout/Layout';
 import Typography from '@material-ui/core/Typography';
 import C19Tracker from './containers/C19Tracker/C19Tracker';
 import classes from './App.module.css';
-import { Paper, ThemeProvider, createMuiTheme, Theme } from '@material-ui/core';
+import {
+  Paper,
+  ThemeProvider,
+  createMuiTheme,
+  Theme,
+  Grid,
+} from '@material-ui/core';
 import useDarkMode from './theme';
-
+import topHeaderWave from '../src/assests/images/topHeader.svg';
 declare type darkMode = {
   palette: any;
 };

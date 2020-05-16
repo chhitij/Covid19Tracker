@@ -1,0 +1,118 @@
+.banner {
+  height: 32vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+@keyframes zoominoutsinglefeatured {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.1, 1.1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+.banner-wt {
+  background: url(../../assests/images/cover.jpg) no-repeat 50% 50%;
+  background-size: cover;
+  background-position: bottom;
+}
+
+.roundCase {
+  background: #f0f6ff url(../../assests/images/virus.png) no-repeat 50% 50%;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: -5px 18px 40px -12px rgba(50, 50, 93, 0.6);
+  /* transform: translate(-3%, -55%) rotate3d(0.5, 0.6, 0, 4deg) rotateZ(-1deg); */
+}
+
+.itemText.MuiGrid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bold;
+}
+
+.confirmed {
+  border: 1px solid #ff073a;
+  color: #ff0739de;
+}
+
+.active {
+  border: 1px solid #007bff;
+  color: #007bff;
+}
+
+.recoverd {
+  border: 1px solid#28a745;
+  color: #28a745;
+}
+
+.decased {
+  border: 1px solid #6c757d;
+  color: #6c757d;
+}
+.text-center {
+  text-align: center !important;
+}
+
+.showCasesGrid {
+  display: flex;
+  padding: 11px;
+  justify-content: space-around;
+  min-height: 116px;
+}
+
+.heading {
+  display: none;
+}
+
+@media (min-width: 576px) {
+  .banner {
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .banner {
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+  }
+  .heading {
+    display: block;
+    position: relative;
+    bottom: 42px;
+  }
+  .roundCase {
+    background: #f0f6ff url(../../assests/images/virus.png) no-repeat 50% 50%;
+    background-size: 50px;
+    width: 80px;
+    height: 80px;
+    font-size: 11px;
+  }
+}
+
+@media (min-width: 992px) {
+  .banner-text-wt {
+    margin-top: -200px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .banner-text-wt {
+    margin-top: -300px;
+  }
+  .banner {
+    height: 40vh;
+  }
+}
